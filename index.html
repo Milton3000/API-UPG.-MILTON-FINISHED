@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/dist/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <title>Orange</title>
+  </head>
+  <body class="relative font-sans">
+    <header
+      class="min-h-[25rem] text-white bg-center bg-no-repeat bg-cover"
+      style="
+        background-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0)
+          ),
+          url('https://images.unsplash.com/photo-1696960595275-9d9c84977c52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80');
+      "
+    >
+      <div class="container py-4 md:py-8">
+        <div class="flex items-center justify-between">
+          <a href="/">
+            <h1 class="flex justify-center text-2xl font-light font-heading">
+              Orange
+            </h1>
+          </a>
+          <div id="categories-container" class="hidden lg:flex"></div>
+          <button id="cart-button" class="relative hidden lg:flex">
+            <i class="text-2xl ph ph-shopping-cart"></i>
+            <span
+              id="cart-count"
+              class="absolute flex items-center justify-center h-6 text-xs text-white bg-orange-500 rounded-full -top-4 -right-4 aspect-square"
+            ></span>
+          </button>
+          <button id="menu-button" class="lg:hidden">
+            <i class="text-2xl ph ph-list"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="container py-6 md:py-10 lg:py-14 xl:py-16">
+      <div
+        id="products-container"
+        class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-8"
+      ></div>
+    </div>
+
+    <div
+      id="product-modal"
+      class="fixed z-50 flex items-center justify-center hidden w-full h-full p-8 bg-opacity-50 bg-neutral-900 -inset-0"
+    >
+      <div id="modal-content" class="p-8 bg-white rounded-lg"></div>
+    </div>
+
+    <div
+      id="shopping-cart"
+      class="top-0 right-0 flex flex-col hidden w-8/12 min-h-screen gap-4 p-8 text-white md:w-6/12 xl:w-4/12 bg-neutral-900"
+    >
+      <div class="flex flex-row items-center justify-between gap-2">
+        <h2 class="text-3xl font-medium">Shopping cart</h2>
+        <button
+          id="close-button"
+          class="text-2xl text-white hover:text-gray-500"
+        >
+          <i class="ph ph-x"></i>
+        </button>
+      </div>
+      <ul id="cart-container" class="flex flex-col gap-2">
+        <span>Your cart is empty</span>
+      </ul>
+    </div>
+
+    <footer class="py-4 text-white bg-neutral-900 md:py-8 lg:py-12 xl:py-16">
+      <div class="container flex justify-between px-4 py-2">
+        <section class="flex flex-col w-1/2">
+          <h2><b> Our Adress </b></h2>
+          <address>
+            <p>Wallingatan 30</p>
+            <p>111 24</p>
+            <p>Stockholm</p>
+            <p>Sweden</p>
+          </address>
+        </section>
+
+        <section class="flex flex-col w-1/2 text-right">
+          <h2><b> Contact Us </b></h2>
+          <p>
+            If you have any questions or inquiries, <br />
+            please feel free to get in touch with us.
+          </p>
+          <ul>
+            <li>
+              Email:
+              <a href="mailto:OrangEstore@gmail.com">Orange@gmail.com</a>
+            </li>
+            <li>Phone: <a href="tel:+462423550">+462423550</a></li>
+          </ul>
+        </section>
+      </div>
+
+      <div id="cart-popup"></div>
+
+      <div class="container flex flex-col justify-between py-4">
+        <p class="text-sm text-center">© 2023 — Milton Kristoffersson</p>
+      </div>
+    </footer>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
