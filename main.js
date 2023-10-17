@@ -17,7 +17,7 @@ class Cart {
 
   saveCart() {
     localStorage.setItem("cart", JSON.stringify(this.items));
-    renderCartItems(updateCartCount); 
+    renderCartItems(updateCartCount);
     showCartPopup("Item added to the cart!");
   }
 
@@ -106,17 +106,36 @@ function createStarElement() {
 
 function renderStarRating(rating) {
   const stars = [];
-  for (let i = 0; i < 5; i++) {
-    if (i < rating) {
-      stars.push(createStarElement());
-    } else {
-      const star = createStarElement();
-      star.classList.add("text-gray-300");
-      stars.push(star);
-    }
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 !== 0;
+
+  for (let i = 0; i < fullStars; i++) {
+    stars.push(createStarElement());
   }
+
+  if (hasHalfStar) {
+    stars.push(createHalfStarElement());
+  }
+
+  for (let i = stars.length; i < 5; i++) {
+    stars.push(createEmptyStarElement());
+  }
+
   return stars;
 }
+
+function createHalfStarElement() {
+  const halfStar = document.createElement("i");
+  halfStar.classList.add("ph-fill", "ph-star-half", "text-orange-500");
+  return halfStar;
+}
+
+function createEmptyStarElement() {
+  const emptyStar = document.createElement("i");
+  emptyStar.classList.add("ph-fill", "ph-star", "text-gray-300");
+  return emptyStar;
+}
+
 
 function createProductElement(product) {
   const productElementDiv = document.createElement("div");
@@ -178,7 +197,6 @@ function renderCartItems(updateCartCount) {
       "#cart-container"
     ).innerHTML = `<span class="text-white/75">Your cart is empty</span>`;
   }
-
 
   if (updateCartCount) {
     updateCartCount(cartItems.length);
@@ -263,7 +281,6 @@ function showCartPopup(message) {
 }
 
 function addtoCart(product) {
-
   if (product.category) {
     const cart = new Cart();
     cart.addItem(product);
@@ -355,20 +372,17 @@ menuButton.addEventListener("click", toggleShoppingCart);
 cartButton.addEventListener("click", toggleShoppingCart);
 closeButton.addEventListener("click", toggleShoppingCart);
 
-
 function updateCartCount(count) {
   const cartCount = document.querySelector("#cart-count");
   cartCount.textContent = count;
 }
 
 function initializeApp() {
-  renderCartItems(updateCartCount); 
+  renderCartItems(updateCartCount);
   fetchProducts();
   fetchCategories();
 
- 
   updateCartCount(cart.getCartItems().length);
 }
 
 initializeApp();
-
